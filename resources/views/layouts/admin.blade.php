@@ -15,6 +15,8 @@
          'icon' => 'M7 7h.01M3 5a2 2 0 012-2h5l9 9a2 2 0 010 3l-5 5a2 2 0 01-3 0L3 10V5z'],
         ['route' => 'admin.products.index', 'match' => 'admin.products.*', 'label' => 'Produk',
          'icon' => 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4'],
+        ['route' => 'admin.workers.index', 'match' => 'admin.workers.*', 'label' => 'Pekerja',
+         'icon' => 'M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-4.13a4 4 0 11-8 0 4 4 0 018 0zm6 0a3 3 0 11-6 0 3 3 0 016 0z'],
     ];
 @endphp
 
