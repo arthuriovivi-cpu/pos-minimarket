@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\WorkerController;
 use App\Http\Controllers\AuthController;
@@ -37,6 +38,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('categories', CategoryController::class)->except(['create', 'show']);
     Route::resource('products', ProductController::class)->except(['show']);
     Route::resource('workers', WorkerController::class)->only(['index', 'store', 'destroy']);
+
+    // Inventaris
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
+    Route::get('/inventory/history', [InventoryController::class, 'history'])->name('inventory.history');
+    Route::get('/inventory/{product}/stock', [InventoryController::class, 'stockForm'])->name('inventory.stock');
+    Route::post('/inventory/{product}/stock', [InventoryController::class, 'addStock'])->name('inventory.add');
+    Route::put('/inventory/{product}/min-stock', [InventoryController::class, 'updateMinStock'])->name('inventory.min');
 });
 
 Route::middleware(['auth', 'role:kasir'])->prefix('kasir')->name('kasir.')->group(function () {

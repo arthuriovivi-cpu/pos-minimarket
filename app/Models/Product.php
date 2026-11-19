@@ -20,4 +20,23 @@ class Product extends Model
     {
         return $this->hasMany(InventoryMovement::class);
     }
+
+    /**
+     * Status stok: habis, hampir_habis, menipis, atau aman.
+     * Dipakai di halaman inventaris dan dashboard.
+     */
+    public function getStockStatusAttribute(): string
+    {
+        if ($this->stock <= 0) {
+            return 'habis';
+        }
+        if ($this->stock <= (int) floor($this->min_stock / 2)) {
+            return 'hampir_habis';
+        }
+        if ($this->stock <= $this->min_stock) {
+            return 'menipis';
+        }
+
+        return 'aman';
+    }
 }
