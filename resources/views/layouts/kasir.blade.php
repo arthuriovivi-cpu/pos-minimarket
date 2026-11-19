@@ -11,9 +11,21 @@
 </head>
 <body class="bg-slate-50 text-slate-700">
     <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6">
-        <div>
-            <span class="text-lg font-semibold text-blue-700">Minimarket POS</span>
-            <span class="text-xs text-slate-500 ml-2">Kasir</span>
+        <div class="flex items-center gap-6">
+            <div>
+                <span class="text-lg font-semibold text-blue-700">Minimarket POS</span>
+                <span class="text-xs text-slate-500 ml-2">Kasir</span>
+            </div>
+            <nav class="flex gap-1">
+                <a href="{{ route('kasir.index') }}"
+                   class="px-3 py-2 rounded-lg text-sm font-medium {{ request()->routeIs('kasir.index') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100' }}">
+                    Kasir
+                </a>
+                <a href="{{ route('kasir.history') }}"
+                   class="px-3 py-2 rounded-lg text-sm font-medium {{ request()->routeIs('kasir.history') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100' }}">
+                    Riwayat Saya
+                </a>
+            </nav>
         </div>
         <div class="flex items-center gap-4">
             <div class="text-sm text-right">

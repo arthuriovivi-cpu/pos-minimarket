@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\WorkerController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Kasir\HistoryController;
 use App\Http\Controllers\Kasir\PosController;
 use App\Http\Controllers\ReceiptController;
 use App\Models\Category;
@@ -45,9 +47,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/inventory/{product}/stock', [InventoryController::class, 'stockForm'])->name('inventory.stock');
     Route::post('/inventory/{product}/stock', [InventoryController::class, 'addStock'])->name('inventory.add');
     Route::put('/inventory/{product}/min-stock', [InventoryController::class, 'updateMinStock'])->name('inventory.min');
+
+    // Riwayat transaksi
+    Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
 });
 
 Route::middleware(['auth', 'role:kasir'])->prefix('kasir')->name('kasir.')->group(function () {
     Route::get('/', [PosController::class, 'index'])->name('index');
     Route::post('/checkout', [PosController::class, 'checkout'])->name('checkout');
+    Route::get('/riwayat', [HistoryController::class, 'index'])->name('history');
 });
